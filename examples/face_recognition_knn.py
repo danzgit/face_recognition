@@ -100,17 +100,18 @@ if __name__ == "__main__":
 
     # STEP 2: Using the trained classifier, make predictions for unknown images
     for image_file in os.listdir(source_directory):
-        full_file_path = os.path.join(source_directory, image_file)
+        if image_file.endswith('.jpg'): ############### Ini perubahan terbaru
+            full_file_path = os.path.join(source_directory, image_file)
 
-        print("Looking for faces in {}".format(image_file))
+            print("Looking for faces in {}".format(image_file))
 
-        # Find all people in the image using a trained classifier model
-        # Note: You can pass in either a classifier file name or a classifier model instance
-        predictions = predict(full_file_path, model_path=the_model_path)
+            # Find all people in the image using a trained classifier model
+            # Note: You can pass in either a classifier file name or a classifier model instance
+            predictions = predict(full_file_path, model_path=the_model_path)
 
-        # Print results on the console
-        for name, (top, right, bottom, left) in predictions:
-            if "unknown" not in name:
-                print("- Found {} at ({}, {})".format(name, left, top))
-                copyfile(full_file_path, result_directory + "/" + image_file)
+            # Print results on the console
+            for name, (top, right, bottom, left) in predictions:
+                if "unknown" not in name:
+                    print("- Found {} at ({}, {})".format(name, left, top))
+                    copyfile(full_file_path, result_directory + "/" + image_file)
 
