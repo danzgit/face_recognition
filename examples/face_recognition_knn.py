@@ -86,7 +86,7 @@ def predict(X_img_path, knn_clf=None, model_path=None, distance_threshold=0.6):
 if __name__ == "__main__":
 
     #Required to change for every iteration.
-    the_model_path="trained_knn_model1.clf"
+    the_model_path="knn_model/" + str(random.randint(10000, 19999)) + "_trained_knn_model.clf"
     source_directory="/home/ubuntu/images/the_professional/the_professional_t02_aligned1"
 
     sample_face_images_directory="/home/ubuntu/images/the_professional/training_data"
